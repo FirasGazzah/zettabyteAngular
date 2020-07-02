@@ -85,7 +85,7 @@ items: Item[] = [
   }
 
   Buy() {
-    if (this.totale <= 1000){
+    if (this.totale <= 1000 && this.panier.length > 0){
         Swal.fire({
           position: 'center',
           icon: 'info',

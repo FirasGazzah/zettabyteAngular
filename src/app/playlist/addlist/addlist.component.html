@@ -81,6 +81,6 @@
   </div>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button class="btn btn-1 btn-success" type="submit" [disabled]="!form.valid || !form2.valid || playlist.songs.length === 0" (click)="submit()">Submit</button>
+  <button class="btn btn-1 btn-success" type="submit" [disabled]="!form.valid || !form2.valid" (click)="submit()">Submit</button>
   <button class="btn btn-1 btn-danger" matDialogClose>Cancel</button>
 </mat-dialog-actions>

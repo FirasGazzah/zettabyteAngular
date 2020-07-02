@@ -7,7 +7,7 @@
       <hr>
     </div>
 
-    <div class="col-md-8" *ngFor="let i of playlist">
+    <div class="col-md-8" *ngFor="let i of playlist; let index = index">
 <br>
       <mat-card>
         <mat-card-header>
@@ -29,7 +29,7 @@
           <button mat-button color="warn" (click)="delete(i)">
             Delete
           </button>
-          <button mat-button (click)="edits(i)">
+          <button mat-button (click)="edits(index)">
             Edit
           </button>
         </mat-card-actions>

@@ -36,8 +36,9 @@ playlist: Playlist[]
     const index = this.playlist.findIndex((e) => e.name === sing.name);
     this.playlist.splice(index, 1);
   }
-  edits(list) {
+  edits(index) {
     const dialogConfig = new MatDialogConfig();
+    const list = this.playlist[index];
     dialogConfig.width = '50%';
     dialogConfig.panelClass = 'dialog';
     dialogConfig.disableClose = true;
@@ -46,10 +47,10 @@ playlist: Playlist[]
     const dialogRef = this.dialog.open(EditComponent, {
       data: {list}
     });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   if (result) {
-    //     this.playlist.push(result)
-    //   }
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.playlist[index] = result;
+      }
+    });
   }
 }
