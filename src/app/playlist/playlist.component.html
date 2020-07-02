@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <button mat-button color="primary" (click)="addPlayList()">
+        New Playlist<mat-icon>playlist_add</mat-icon>
+      </button>
+      <hr>
+    </div>
+
+    <div class="col-md-8" *ngFor="let i of playlist">
+<br>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{i.name}}</mat-card-title>
+          <mat-card-subtitle><p>Total {{i.totalSongs}} songs, {{i.totalDuration}} minute</p>
+          {{i.description}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <hr>
+          <table>
+            <tr *ngFor="let song of i.songs" >
+              <mat-icon>music_note</mat-icon>
+              <td> {{song.title}}
+                <p> By {{song.artist}} . {{song.duration}} minutes</p></td>
+            </tr>
+          </table>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="warn" (click)="delete(i)">
+            Delete
+          </button>
+          <button mat-button (click)="edits(i)">
+            Edit
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+</div>

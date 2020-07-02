@@ -1,0 +1,86 @@
+<h1>Create New PlayList</h1>
+<mat-dialog-content>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+           <form [formGroup]="form" (submit)="submit()">
+              <mat-form-field appearance="standard">
+                <mat-label>PlayList Name *</mat-label>
+                <input formControlName="name" matInput>
+              </mat-form-field>
+                 <br>
+              <mat-form-field appearance="legacy">
+                <mat-label>Description *</mat-label>
+                <textarea formControlName="description" matInput></textarea>
+              </mat-form-field>
+           </form>
+             <form [formGroup]="form2">
+                       <table *ngIf="do">
+                         <tr *ngFor="let sing of playlist.songs">
+                           <td>
+                             <mat-form-field appearance="legacy">
+                               <mat-label>Song Title *</mat-label>
+                               <input [value]="sing.title" matInput >
+                             </mat-form-field>
+                           </td>
+                           <td>
+                             <mat-form-field appearance="legacy">
+                               <mat-label>Artist *</mat-label>
+                               <input [value]="sing.artist"  matInput>
+                             </mat-form-field>
+                           </td>
+                           <td>
+                             <mat-form-field appearance="legacy">
+                               <mat-label>Duration *</mat-label>
+                               <input [value]="sing.duration.valueOf()"  type="number" matInput>
+                             </mat-form-field>
+                           </td>
+                           <td>
+                             <button mat-mini-fab color="warn" (click)="delete(sing)">
+                               -
+                             </button>
+                           </td>
+                         </tr>
+                       </table>
+                       <table *ngIf="!hides">
+                        <tr>
+                          <td>
+                            <mat-form-field appearance="legacy">
+                              <mat-label>Song Title *</mat-label>
+                              <input formControlName="title" matInput>
+                            </mat-form-field>
+                          </td>
+                          <td>
+                            <mat-form-field appearance="legacy">
+                              <mat-label>Artist *</mat-label>
+                              <input formControlName="artist" matInput>
+                            </mat-form-field>
+                          </td>
+                          <td>
+                            <mat-form-field appearance="legacy">
+                              <mat-label>Duration *</mat-label>
+                              <input formControlName="duration" type="number" matInput>
+                            </mat-form-field>
+                          </td>
+                          <td>
+                            <button mat-mini-fab color="primary" (click)="add()">
+                              +
+                            </button>
+                          </td>
+                          <td>
+                            <button mat-mini-fab color="warn" *ngIf="playlist.songs.length !== 0" (click)="hide()">
+                              -
+                            </button>
+                          </td>
+                        </tr>
+                      </table>
+          </form>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button class="btn btn-1 btn-success" type="submit" [disabled]="!form.valid || !form2.valid || playlist.songs.length === 0" (click)="submit()">Submit</button>
+  <button class="btn btn-1 btn-danger" matDialogClose>Cancel</button>
+</mat-dialog-actions>

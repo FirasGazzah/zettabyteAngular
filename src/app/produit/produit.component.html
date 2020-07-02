@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let i of items">
+        <mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-title>{{i.name}}</mat-card-title>
+    <mat-card-subtitle>{{i.price}} $</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image [src]="i.image" [alt]="i.desc" width="100px" height="100px">
+  <mat-card-content>
+    <p>
+      {{i.desc}}
+    </p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button color="primary" (click)="addToCart(i)" *ngIf="!i.addedToCart">
+     Add To Cart <mat-icon>add_shopping_cart</mat-icon>
+    </button>
+    <button mat-button color="primary" (click)="addToCart(i)" *ngIf="i.addedToCart">
+      Added To cart! <mat-icon>shopping_cart</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
+    </div>
+  </div>
+</div>
+
+<div class="container" *ngIf="panier.length >= 1">
+  <div class="row">
+    <div class="col-md-12">
+      <hr>
+      <h1>Added to cart:</h1>
+      <hr>
+      <table width="100%">
+        <tr *ngFor="let p of panier">
+          <td><b>{{p.name}}</b></td>
+          <td>{{p.price}} $</td>
+        </tr>
+      </table>
+      <hr>
+      <table width="100%">
+        <tr>
+          <td><b>Totale</b></td>
+          <td>{{totale}} $</td>
+        </tr>
+        <tr style="width: 100%"><td>  <button mat-raised-button color="primary" (click)="Buy()">
+          Buy
+        </button></td></tr>
+      </table>
+      <hr>
+    </div>
+  </div>
+</div>
